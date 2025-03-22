@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - MovingPlatform
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - MeshPlayer
+  - MeshEmemy
+  - Player
+  - Enemy
+  - Entity
+  - Obstacle
+  - Wall
+  - Interactible
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Game
+    uniqueID: 4278785691
+    locked: 0
+  - name: WorldCanvas
+    uniqueID: 2420109927
+    locked: 0
+  - name: UI
+    uniqueID: 1564293343
+    locked: 0
+  - name: Tutorial
+    uniqueID: 2963459415
+    locked: 0
