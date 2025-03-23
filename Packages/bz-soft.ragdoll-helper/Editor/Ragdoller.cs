@@ -448,8 +448,8 @@ namespace BzKovSoft.RagdollHelper.Editor
 			if (part.rigidbody == null)
 				part.rigidbody = go.AddComponent<Rigidbody>();
 			part.rigidbody.mass = mass;
-			part.rigidbody.drag = ragdollProperties.rigidDrag;
-			part.rigidbody.angularDrag = ragdollProperties.rigidAngularDrag;
+			part.rigidbody.linearDamping = ragdollProperties.rigidDrag;
+			part.rigidbody.angularDamping = ragdollProperties.rigidAngularDrag;
 			part.rigidbody.collisionDetectionMode = ragdollProperties.cdMode;
 			part.rigidbody.isKinematic = ragdollProperties.isKinematic;
 			part.rigidbody.useGravity = ragdollProperties.useGravity;
