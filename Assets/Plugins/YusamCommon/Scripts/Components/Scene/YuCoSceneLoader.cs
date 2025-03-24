@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace YusamCommon
 {
     public sealed class YuCoSceneLoader : YuCoAbstractScene
     {
         [SerializeField] 
-        private string sceneName = "GameLevel_1";
+        public string sceneName = "GameLevel_1";
 
-        public override string GetSceneName()
+        protected override string GetSceneName()
         {
             return sceneName;
+        }
+
+        public void YuCoSetSceneName(string value)
+        {
+            sceneName = value;
         }
     }
 }

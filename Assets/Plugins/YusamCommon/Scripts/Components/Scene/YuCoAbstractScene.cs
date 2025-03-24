@@ -27,7 +27,7 @@ namespace YusamCommon
         private bool _autoTimeScaleNormal = true;
         
         [SerializeField] 
-        private UnityEvent _onSceneStartLoading;
+        private UnityEvent<string> _onSceneStartLoading;
         [SerializeField] 
         private UnityEvent<float> _onSceneProgressLoading;
         [SerializeField] 
@@ -38,11 +38,18 @@ namespace YusamCommon
         private float _loadingProgress;
         private AsyncOperation _asyncOperation;
 
-        public abstract string GetSceneName();
+        protected abstract string GetSceneName();
         
         public void YuCoSceneLoaderStartHandler()
         {
             if (_asyncOperation != null) return;
+            
+            var sceneName = GetSceneName();
+            
+            if (_isDebugging)
+            {
+                Debug.Log($"The scene [ {sceneName} ] loading...");
+            }
             
             if (_autoHideShowCursor)
             {
@@ -52,8 +59,10 @@ namespace YusamCommon
                     Debug.Log($"Auto hide cursor");
                 }
             }
-            _onSceneStartLoading?.Invoke();
-            StartCoroutine(AsyncSceneLoader());
+            
+            _onSceneStartLoading?.Invoke(sceneName);
+            
+            StartCoroutine(AsyncSceneLoader(sceneName));
         }
         
         public void YuCoSceneLoaderActivateHandler()
@@ -64,15 +73,8 @@ namespace YusamCommon
             }
         }
 
-        private IEnumerator AsyncSceneLoader()
+        private IEnumerator AsyncSceneLoader(string sceneName)
         {
-            var sceneName = GetSceneName();
-            
-            if (_isDebugging)
-            {
-                Debug.Log($"The scene [ {sceneName} ] loading...");
-            }
-            
             _asyncOperation = SceneManager.LoadSceneAsync(sceneName);
 
             if (_asyncOperation != null)

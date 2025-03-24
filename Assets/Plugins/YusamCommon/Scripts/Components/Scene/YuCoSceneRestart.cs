@@ -4,7 +4,7 @@ namespace YusamCommon
 {
     public sealed class YuCoSceneRestart : YuCoAbstractScene
     {
-        public override string GetSceneName()
+        protected override string GetSceneName()
         {
             return SceneManager.GetActiveScene().name;
         }

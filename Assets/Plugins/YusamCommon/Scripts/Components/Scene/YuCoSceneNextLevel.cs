@@ -10,24 +10,24 @@ namespace YusamCommon
         [SerializeField] 
         private string sceneReturnToMainMenu = "GameLauncher";
 
-        public override string GetSceneName()
+        protected override string GetSceneName()
         {
             return IsNextSceneExists(out var newName) ? newName : sceneReturnToMainMenu;
         }
         
-        public string GetNextSceneName()
+        private string GetNextSceneName()
         {
-            var idAsString = GetCurrentLevelId();
+            var idAsString = GetCurrentSceneId();
             if (!int.TryParse(idAsString, out var id))
             {
                 return SceneManager.GetActiveScene().name;
             }
             id++;
-            var newName = scenePrefix + id.ToString();
+            var newName = GetScenePrefix() + id.ToString();
             return newName;
         }   
 
-        public bool IsNextSceneExists(out string sceneName)
+        private bool IsNextSceneExists(out string sceneName)
         {
             var newName = GetNextSceneName();
 
@@ -36,13 +36,13 @@ namespace YusamCommon
             return YuCoSceneHelper.IsSceneExists(newName);
         }
         
-        public string GetCurrentLevelId()
+        private string GetCurrentSceneId()
         {
-            string currentName = SceneManager.GetActiveScene().name;
-            return currentName.Replace(scenePrefix, "");
+            var currentName = SceneManager.GetActiveScene().name;
+            return currentName.Replace(GetScenePrefix(), "");
         }
         
-        public string GetScenePrefix()
+        private string GetScenePrefix()
         {
             return scenePrefix;
         }

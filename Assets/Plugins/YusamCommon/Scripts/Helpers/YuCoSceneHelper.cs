@@ -28,16 +28,6 @@ namespace YusamCommon
 
             var tmp = GetListScenes();
             return tmp.Any(sceneName => string.Compare(name, sceneName, StringComparison.OrdinalIgnoreCase) == 0);
-
-            /*for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-            {
-                var scenePath = SceneUtility.GetScenePathByBuildIndex(i);
-                var lastSlash = scenePath.LastIndexOf("/");
-                var sceneName = scenePath.Substring(lastSlash + 1, scenePath.LastIndexOf(".") - lastSlash - 1);
-
-                if (string.Compare(name, sceneName, true) == 0)
-                    return true;
-            }*/
         }
         
         public static int GetMaxScenes(string prefix)
@@ -47,7 +37,7 @@ namespace YusamCommon
                 return 0;
             }
 
-            int max = 0;
+            var max = 0;
             
             var tmp = GetListScenes();
             foreach (var num in from sceneName in tmp 
@@ -61,25 +51,6 @@ namespace YusamCommon
                     }
                 }
             }
-            
-            /*for (var i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
-            {
-                var scenePath = SceneUtility.GetScenePathByBuildIndex(i);
-                var lastSlash = scenePath.LastIndexOf("/");
-                var sceneName = scenePath.Substring(lastSlash + 1, scenePath.LastIndexOf(".") - lastSlash - 1);
-
-                if (sceneName.Substring(0, prefix.Length).Equals(prefix))
-                {
-                    string num = sceneName.Substring(prefix.Length, sceneName.Length - prefix.Length);
-                    if (int.TryParse(num, out var id))
-                    {
-                        if ( id > max)
-                        {
-                            max = id;
-                        }
-                    }
-                }
-            }*/
 
             return max;
         }
