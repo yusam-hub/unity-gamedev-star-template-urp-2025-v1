@@ -44,13 +44,14 @@ namespace YusamCommon
             return Input.GetMouseButton((int) YuCoMouseButtonEnum.Secondary);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
+            var deltaTime = Time.unscaledDeltaTime;
             if (IsButtonPressed())
             {
                 YuCoApplicationHelper.HideCursor();
-                UpdateMovement();
-                UpdateRotation();
+                UpdateMovement(deltaTime);
+                UpdateRotation(deltaTime);
             }
             else
             {
@@ -58,18 +59,18 @@ namespace YusamCommon
             }  
         }
         
-        private void UpdateMovement()
+        private void UpdateMovement(float deltaTime)
         {
-            transform.Translate(GetDirection() * moveSpeed * Time.deltaTime);
+            transform.Translate(GetDirection() * moveSpeed * deltaTime);
         }
 
-        private void UpdateRotation()
+        private void UpdateRotation(float deltaTime)
         {
             var mouseX = Input.GetAxis("Mouse X");
             var mouseY = Input.GetAxis("Mouse Y");
             var input = new Vector3(-mouseY, mouseX, 0);
             input *= rotateSpeed;
-            input *= Time.deltaTime;
+            input *= deltaTime;
             transform.Rotate( input);
             var eulerAngles = transform.rotation.eulerAngles;
             transform.rotation = Quaternion.Euler(eulerAngles.x, eulerAngles.y, 0);

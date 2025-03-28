@@ -42,7 +42,7 @@ namespace ProjectFolderMenus
             using (var writer = new StreamWriter(filePath))
             {
                 writer.WriteLine("*");
-                writer.WriteLine(".gitignore");
+                writer.WriteLine("!.gitignore");
             }
             
             Debug.Log("File created and data written at: " + filePath);
