@@ -60,7 +60,9 @@ namespace Tools.UnityEditor
             var worldGo = new GameObject("[ World ]");
 
             CreateGroundPlane(worldGo.transform);
-            CreateCube(worldGo.transform);
+            CreateCube(worldGo.transform, new Vector3(-3, 0.5f, 0));
+            CreateCube(worldGo.transform, new Vector3(3, 0.5f, 0));
+            CreateCube(worldGo.transform, new Vector3(3, 1.5f, 0));
 
             EditorSceneManager.MarkSceneDirty(activeScene);
         }
@@ -78,18 +80,18 @@ namespace Tools.UnityEditor
             primitive.name = "Ground Plane";
         }
         
-        private static void CreateCube(Transform parent)
+        private static void CreateCube(Transform parent, Vector3 position)
         {
             var primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);
             primitive.transform.SetParent(parent);
-            primitive.transform.position = new Vector3(0, 0.5f, 0);
+            primitive.transform.position = position;
             primitive.transform.localScale = new Vector3(1, 1, 1);
             var mat = Resources.Load<Material>("Materials/YuCo_Prototype_Scaling_Orange");
             if (mat)
             {
                 primitive.GetComponent<MeshRenderer>().sharedMaterial = mat;
             }
-            primitive.name = "Cube Example";
+            primitive.name = "Cube";
         }
         
         private static void CreateCanvas(Transform parent)
