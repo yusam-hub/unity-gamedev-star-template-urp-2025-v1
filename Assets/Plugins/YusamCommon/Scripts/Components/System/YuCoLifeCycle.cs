@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace YusamCommon
 {
-    public class YuCoLifeCycle : MonoBehaviour
+    public class YuCoLifeCycle : YuCoMonoBehaviour
     {
         [SerializeField] 
         private UnityEvent _onAwake;

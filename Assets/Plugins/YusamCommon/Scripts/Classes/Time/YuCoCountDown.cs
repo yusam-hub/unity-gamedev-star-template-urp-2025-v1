@@ -4,7 +4,7 @@ using UnityEngine;
 namespace YusamCommon
 {
     [Serializable]
-    public sealed class YuCoCountDown
+    public sealed class YuCoCountDown : YuCoObject
     {
         [SerializeField]
         private float _duration;
@@ -33,6 +33,12 @@ namespace YusamCommon
         {
             _duration = duration;
             _current = duration;
+        }
+        
+        public void Reset(float duration, float current)
+        {
+            _duration = duration;
+            _current = current;
         }
         
         public bool IsExpired()

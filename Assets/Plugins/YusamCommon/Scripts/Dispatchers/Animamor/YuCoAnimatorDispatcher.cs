@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace YusamCommon
 {
@@ -6,10 +8,22 @@ namespace YusamCommon
     [DisallowMultipleComponent]
     public class YuCoAnimatorDispatcher : MonoBehaviour
     {
+        [SerializeField] 
+        protected UnityEvent awakeEventHandler;
+        
+        [SerializeField] 
+        protected UnityEvent startEventHandler;
+        
         private Animator _animator;
+        
         protected virtual void Awake()
         {
-            _animator = GetComponent<Animator>();
+            awakeEventHandler?.Invoke();
+        }
+
+        private void Start()
+        {
+            startEventHandler?.Invoke();
         }
 
         public Animator GetAnimator()

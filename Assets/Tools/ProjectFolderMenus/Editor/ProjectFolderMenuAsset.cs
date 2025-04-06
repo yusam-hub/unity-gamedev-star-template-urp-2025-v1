@@ -18,6 +18,7 @@ namespace ProjectFolderMenus
             {"Sprites",new[]{"_"}},
             {"Fonts",new[]{"_"}},
             {"Animations",new[]{"_"}},
+            {"Scenes",new[]{"_"}},
         };
         
         [MenuItem("Assets/Folder/Create Asset Folders in selected", false, MenuPriority)]

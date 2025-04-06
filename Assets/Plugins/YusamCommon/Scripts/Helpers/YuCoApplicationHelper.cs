@@ -66,5 +66,10 @@ namespace YusamCommon
             return new string[] {};
 #endif
         }
+
+        public static int GetUnscaledFps()
+        {
+            return (int) (1f / Time.unscaledDeltaTime);
+        }
     }
 }

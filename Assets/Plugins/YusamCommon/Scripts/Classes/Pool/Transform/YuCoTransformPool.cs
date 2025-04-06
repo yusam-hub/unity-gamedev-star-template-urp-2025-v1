@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace YusamCommon
 {
-    public class YuCoTransformPool : IYuCoTransformPool
+    public sealed class YuCoTransformPool : YuCoObject, IYuCoTransformPool
     {
         private readonly Transform _prefab;
         private readonly Transform _container;
@@ -17,20 +17,25 @@ namespace YusamCommon
 
         public void Init(int count)
         {
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
-                var transform = GameObject.Instantiate(_prefab, _container);
-                OnCreate(transform);
+                var transform = DoCreate();
                 _queue.Enqueue(transform);
             }
         }
 
+        private Transform DoCreate()
+        {
+            var transform = Object.Instantiate(_prefab, _container);
+            OnCreate(transform);
+            return transform;
+        }
+
         public Transform Rent()
         {
-            if (!_queue.TryDequeue(out Transform transform))
+            if (!_queue.TryDequeue(out var transform))
             {
-                transform = GameObject.Instantiate(_prefab, _container);
-                OnCreate(transform);
+                transform = DoCreate();
             }
 
             OnRent(transform);
@@ -48,30 +53,30 @@ namespace YusamCommon
 
         public void Clear()
         {
-            foreach (Transform transform in _queue)
+            foreach (var transform in _queue)
             {
-                this.OnDestroy(transform);
-                GameObject.Destroy(transform);
+                OnDestroy(transform);
+                Object.Destroy(transform);
             }
 
             _queue.Clear();
         }
 
-        protected virtual void OnCreate(Transform transform)
+        private void OnCreate(Transform transform)
         {
             transform.gameObject.SetActive(false);
         }
 
-        protected virtual void OnDestroy(Transform transform)
+        private void OnDestroy(Transform transform)
         {
         }
 
-        protected virtual void OnRent(Transform transform)
+        private void OnRent(Transform transform)
         {
             transform.gameObject.SetActive(true);
         }
 
-        protected virtual void OnReturn(Transform transform)
+        private void OnReturn(Transform transform)
         {
             transform.gameObject.SetActive(false);
             transform.SetParent(_container);

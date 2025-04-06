@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace YusamCommon
 {
-    public abstract class YuCoBaseDataStorage : MonoBehaviour, IYuCoDataStorage
+    public abstract class YuCoBaseDataStorage : YuCoMonoBehaviour, IYuCoDataStorage
     {
         public abstract void SetParameter(string key, float value);
         public abstract void SetParameter(string key, int index, float value);

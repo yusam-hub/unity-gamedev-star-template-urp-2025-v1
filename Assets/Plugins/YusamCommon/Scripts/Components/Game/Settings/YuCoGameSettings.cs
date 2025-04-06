@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace YusamCommon
 {
+    [DefaultExecutionOrder(-10000)]
     public partial class YuCoGameSettings : YuCoSingletonDontDestroyOnLoad<YuCoGameSettings>
     {
         [SerializeField] 
@@ -10,21 +12,33 @@ namespace YusamCommon
         [SerializeField] 
         public YuCoGameSettingsBlackboardBaseSo blackboardBaseSo;
 
-        protected override void CreateOnce()
+        [SerializeField] 
+        private UnityEvent onLoadedBlackboard;
+        
+        [SerializeField] 
+        private UnityEvent onBeforeSaveBlackboard;
+        
+        [SerializeField] 
+        private UnityEvent onAfterSaveBlackboard;
+        
+        protected override void AwakeOnce()
         {
+            base.AwakeOnce();
             blackboardBaseSo = Instantiate(blackboardBaseSo);
-            
             LoadGameSettings();
         }
 
-        public void LoadGameSettings()
+        private void LoadGameSettings()
         {
             blackboardBaseSo.LoadBlackboard(dataStorage);
+            onLoadedBlackboard?.Invoke();
         }
 
         public void SaveGameSettings()
         {
+            onBeforeSaveBlackboard?.Invoke();
             blackboardBaseSo.SaveBlackboard(dataStorage);
+            onAfterSaveBlackboard?.Invoke();
         }
         
         public YuCoGameSettingsBlackboardBaseSo BlackboardBase()
@@ -46,27 +60,36 @@ namespace YusamCommon
             serializedObjDefault = new UnityEditor.SerializedObject(target);
         }
 
-        public void DrawDefault()
+        private void DrawDefault()
         {
             serializedObjDefault.Update();
 
-            UnityEditor.SerializedProperty property = serializedObjDefault.GetIterator();
-            bool enterChildren = true;
+            var property = serializedObjDefault.GetIterator();
+            var enterChildren = true;
 
             while (property.NextVisible(enterChildren))
             {
-                UnityEditor.EditorGUILayout.PropertyField(property, true);
+              
+                if (property.name.Equals("m_Script"))
+                {
+                    
+                }
+                else
+                {
+                    UnityEditor.EditorGUILayout.PropertyField(property, true);
+                }
+
                 enterChildren = false;
             }
 
             serializedObjDefault.ApplyModifiedProperties();
         }
-        
-        public void DrawBlackboard()
+
+        private void DrawBlackboard()
         {
-            YuCoGameSettings holder = (YuCoGameSettings) target;
+            var holder = (YuCoGameSettings) target;
             
-            if (holder.blackboardBaseSo == null)
+            if (!holder.blackboardBaseSo)
             {
                 return;
             }

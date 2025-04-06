@@ -3,7 +3,7 @@ using UnityEngine;
 namespace YusamCommon
 {
     [DisallowMultipleComponent]
-    public sealed class YuCoFlyCamera : MonoBehaviour
+    public sealed class YuCoFlyCamera : YuCoMonoBehaviour
     {
         [SerializeField] private float rotateSpeed = 500;
         [SerializeField] private float moveSpeed = 8;

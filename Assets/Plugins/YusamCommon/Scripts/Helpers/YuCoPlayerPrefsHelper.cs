@@ -4,7 +4,7 @@ namespace YusamCommon
 {
     public static class YuCoPlayerPrefsHelper
     {
-        public static bool IsDebugging = false;
+        public static readonly bool IsDebugging = false;
         public static void SetParameter(string key, float value)
         {
             PlayerPrefs.SetFloat(key, value);

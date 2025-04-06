@@ -6,11 +6,8 @@ using UnityEngine.Serialization;
 
 namespace YusamCommon
 {
-    public abstract class YuCoAbstractScene : MonoBehaviour
+    public abstract class YuCoAbstractScene : YuCoMonoBehaviour
     {
-        [SerializeField] 
-        private bool _isDebugging;
-        
         [SerializeField] 
         private float _waitBeforeProgressComplete = 1f;
         
@@ -46,7 +43,7 @@ namespace YusamCommon
             
             var sceneName = GetSceneName();
             
-            if (_isDebugging)
+            if (isDebugging)
             {
                 Debug.Log($"The scene [ {sceneName} ] loading...");
             }
@@ -54,7 +51,7 @@ namespace YusamCommon
             if (_autoHideShowCursor)
             {
                 YuCoApplicationHelper.HideCursor();
-                if (_isDebugging)
+                if (isDebugging)
                 {
                     Debug.Log($"Auto hide cursor");
                 }
@@ -87,7 +84,7 @@ namespace YusamCommon
 
                     _onSceneProgressLoading?.Invoke(_loadingProgress);
                     _onSceneProgressLoadingAsString?.Invoke(Mathf.RoundToInt(_loadingProgress * 100) + " %");
-                    if (_isDebugging)
+                    if (isDebugging)
                     {
                         Debug.Log($" Progress [ {_loadingProgress} ]");
                     }
@@ -97,7 +94,7 @@ namespace YusamCommon
 
             if (_waitBeforeProgressComplete > 0)
             {
-                if (_isDebugging)
+                if (isDebugging)
                 {
                     Debug.Log($" Is wait before progress complete { _waitBeforeProgressComplete }");
                 }
@@ -108,14 +105,14 @@ namespace YusamCommon
             _loadingProgress = 1;
             _onSceneProgressLoading?.Invoke(_loadingProgress);
             _onSceneProgressLoadingAsString?.Invoke(Mathf.RoundToInt(_loadingProgress * 100) + " %");
-            if (_isDebugging)
+            if (isDebugging)
             {
                 Debug.Log($" Progress [ {_loadingProgress} ]");
             }
 
             if (_waitAfterProgressComplete > 0)
             {
-                if (_isDebugging)
+                if (isDebugging)
                 {
                     Debug.Log($" Is waiting after progress complete { _waitAfterProgressComplete }");
                 }
@@ -124,7 +121,7 @@ namespace YusamCommon
             
             _onSceneFinishLoading?.Invoke();
             
-            if (_isDebugging)
+            if (isDebugging)
             {
                 Debug.Log($"The scene [ {sceneName} ] loaded");
             }
@@ -132,7 +129,7 @@ namespace YusamCommon
             if (_autoHideShowCursor)
             {
                 YuCoApplicationHelper.ShowCursor();
-                if (_isDebugging)
+                if (isDebugging)
                 {
                     Debug.Log($"Auto show cursor");
                 }
@@ -141,7 +138,7 @@ namespace YusamCommon
             if (_autoTimeScaleNormal)
             {
                 Time.timeScale = 1;
-                if (_isDebugging)
+                if (isDebugging)
                 {
                     Debug.Log($"Auto time scale = 1");
                 }
@@ -149,7 +146,7 @@ namespace YusamCommon
 
             if (_autoActivate)
             {
-                if (_isDebugging)
+                if (isDebugging)
                 {
                     Debug.Log($"The scene [ {sceneName} ] auto activate");
                 }

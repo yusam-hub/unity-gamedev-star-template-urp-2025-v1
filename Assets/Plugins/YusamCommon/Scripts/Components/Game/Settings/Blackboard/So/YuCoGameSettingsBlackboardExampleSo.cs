@@ -3,8 +3,8 @@ using UnityEngine;
 namespace YusamCommon
 {
     [CreateAssetMenu(
-        fileName = "YuCoGameSettingsBlackboardExampleSo",
-        menuName = "YusamCommon/Game/Settings/YuCoGameSettingsBlackboardExampleSo"
+        fileName = nameof(YuCoGameSettingsBlackboardExampleSo),
+        menuName = "YusamCommon/Game/Settings/New " + nameof(YuCoGameSettingsBlackboardExampleSo)
     )]
     public class YuCoGameSettingsBlackboardExampleSo : YuCoGameSettingsBlackboardBaseSo
     {

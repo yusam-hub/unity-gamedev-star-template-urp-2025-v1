@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 namespace YusamCommon
 {
-    public class YuCoLookAtCamera : MonoBehaviour
+    public class YuCoLookAtCamera : YuCoMonoBehaviour
     {
         [SerializeField] 
         private Camera mainCamera;

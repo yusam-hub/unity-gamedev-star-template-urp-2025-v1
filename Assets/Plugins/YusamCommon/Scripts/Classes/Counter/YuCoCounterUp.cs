@@ -4,7 +4,7 @@ using UnityEngine;
 namespace YusamCommon
 {
     [Serializable]
-    public sealed class YuCoCounterDown
+    public sealed class YuCoCounterUp : YuCoObject
     {
         [SerializeField]
         private int _max;
@@ -12,13 +12,13 @@ namespace YusamCommon
         [SerializeField]
         private int _current;
 
-        public YuCoCounterDown(int max)
+        public YuCoCounterUp(int max)
         {
             _max = max;
-            _current = max;
+            _current = 0;
         }
 
-        public YuCoCounterDown(int max, int current)
+        public YuCoCounterUp(int max, int current)
         {
             _max = max;
             _current = current;
@@ -37,12 +37,12 @@ namespace YusamCommon
         public void Reset(int max)
         {
             _max = max;
-            _current = _max;
+            _current = 0;
         }
         
         public bool IsExpired()
         {
-            return _current <= 0;
+            return _current >= _max;
         }
 
         public float GetProgress()
@@ -52,12 +52,12 @@ namespace YusamCommon
 
         public void Reset()
         {
-            _current = _max;
+            _current = 0;
         }
 
         public void Tick()
         {
-            _current--;
+            _current++;
         }
         
         public override string ToString()

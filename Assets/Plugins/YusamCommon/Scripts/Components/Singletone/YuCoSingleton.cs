@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace YusamCommon
 {
-    public class YuCoSingleton<T> : MonoBehaviour where T : MonoBehaviour
+    public class YuCoSingleton<T> : YuCoMonoBehaviour where T : YuCoMonoBehaviour
     {
         private static T instance;
         private static bool isQuitting;
@@ -35,12 +36,17 @@ namespace YusamCommon
             }
         }
 
+        private bool _startOnce;
+        [SerializeField] 
+        private UnityEvent onAwakeOnce;
+        [SerializeField] 
+        private UnityEvent onStartOnce;
         protected virtual void Awake()
         {
             if (instance == null)
             {
                 instance = this as T;
-                CreateOnce();
+                AwakeOnce();
             }
             else if (instance != this)
             {
@@ -48,9 +54,23 @@ namespace YusamCommon
             }
         }
 
-        protected virtual void CreateOnce()
+        protected virtual void AwakeOnce()
         {
-            
+            onAwakeOnce?.Invoke();
+        }
+        
+        protected virtual void StartOnce()
+        {
+            onStartOnce?.Invoke();
+        }
+        
+        protected virtual void Start()
+        {
+            if (!_startOnce)
+            {
+                _startOnce = true;
+                StartOnce();
+            }
         }
 
         private void OnApplicationQuit()

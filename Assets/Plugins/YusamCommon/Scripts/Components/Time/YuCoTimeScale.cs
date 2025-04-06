@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace YusamCommon
 {
-    public class YuCoTimeScale : MonoBehaviour
+    public class YuCoTimeScale : YuCoMonoBehaviour
     {
         [SerializeField] [Range(0, 1)] 
         private float timeScale = 1;

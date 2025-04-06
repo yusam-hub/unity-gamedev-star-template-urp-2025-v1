@@ -1044,6 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc31a5f380fd924ea0727acba9b6afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebugging: 0
   rotateSpeed: 500
   moveSpeed: 8
   upButton: 119
@@ -2348,6 +2349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe35e4ec41594323aa77680cb791c476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebugging: 0
   _onAwake:
     m_PersistentCalls:
       m_Calls:
@@ -2411,7 +2413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c63a2a79fe7d4234aac2ab73e3deec10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isDebugging: 1
+  isDebugging: 0
   _waitBeforeProgressComplete: 1
   _waitAfterProgressComplete: 2
   _autoActivate: 1
