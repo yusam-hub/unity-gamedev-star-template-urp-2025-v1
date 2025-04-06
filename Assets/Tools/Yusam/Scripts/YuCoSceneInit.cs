@@ -11,9 +11,9 @@ using YusamCommon;
 
 namespace Tools.UnityEditor
 {
-    internal static class HierarchyOrganizer
+    internal static class YuCoSceneInit
     {
-        [MenuItem("GameObject/Tools/Hierarchy Organize Create", false, 0)]
+        [MenuItem("GameObject/Tools/Scene Init", false, 0)]
         private static void HierarchyOrganizeCreate(MenuCommand menuCommand)
         {
             var targetObject = Selection.activeGameObject;

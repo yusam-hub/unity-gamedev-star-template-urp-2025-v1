@@ -21,7 +21,7 @@ namespace ProjectFolderMenus
             {"Scenes",new[]{"_"}},
         };
         
-        [MenuItem("Assets/Folder/Create Asset Folders in selected", false, MenuPriority)]
+        [MenuItem("Assets/Tools/Selected Asset Folders Init", false, MenuPriority)]
         public static void CreateAssetSelectedFolders(MenuCommand menuCommand)
         {
             var parentFolder = ProjectFolderMenusHelper.GetCurrentProjectDirectory();

@@ -28,7 +28,7 @@ namespace ProjectFolderMenus
             {"Settings",new[]{"_"}},
         };
         
-        [MenuItem("Assets/Folder/Create Game Folders in Root", false, MenuPriority)]
+        [MenuItem("Assets/Tools/Root Folders Init", false, MenuPriority)]
         public static void ProjectFolderMenuGameCreator(MenuCommand menuCommand)
         {
             foreach (var kvp in _rootFolders)

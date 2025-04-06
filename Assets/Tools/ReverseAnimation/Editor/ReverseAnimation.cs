@@ -17,7 +17,7 @@ namespace Tools.ReverseAnimation.Editor
             return null;
         }
 
-        [MenuItem("Tools/ReverseAnimation")]
+        [MenuItem("Tools/AnimationClip/Reverse Selected")]
         public static void Reverse()
         {
             var clip = GetSelectedClip();
