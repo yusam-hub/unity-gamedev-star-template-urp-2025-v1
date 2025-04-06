@@ -1,5 +1,6 @@
 ### Project
 - Unity Game Dev Star Template URP 2025 v1
+- Github https://github.com/yusam-hub/unity-gamedev-star-template-urp-2025-v1
 
 ### Unity
 - https://unity.com/releases/editor/archive
