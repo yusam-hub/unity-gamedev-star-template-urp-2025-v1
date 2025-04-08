@@ -3,8 +3,8 @@ using UnityEngine;
 namespace YusamCommon
 {
 #if UNITY_EDITOR    
-    [UnityEditor.CustomPropertyDrawer(typeof(YoCoInlineScriptableObject))]
-    public class YoCoInlineScriptableObjectDrawer : UnityEditor.PropertyDrawer
+    [UnityEditor.CustomPropertyDrawer(typeof(YuCoInlineScriptableObject))]
+    public class YuCoInlineScriptableObjectDrawer : UnityEditor.PropertyDrawer
     {
         bool foldout;
 

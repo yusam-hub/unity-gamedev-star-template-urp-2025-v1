@@ -13,6 +13,20 @@
 
 ----------------
 
+### [1.0.4] - 2025-04-08
+
+#### Changed
+
+- Обновлены компоненты FieldOfView
+
+#### Added
+
+- Добавлен компонент YuCoLayerChanger
+- Добавлен атрибут YuCoInlineScriptableObject для Editor
+- Добавлен атрибут YuCoDropdown для Editor
+
+----------------
+
 ### [1.0.3] - 2025-04-06
 
 #### Changed
