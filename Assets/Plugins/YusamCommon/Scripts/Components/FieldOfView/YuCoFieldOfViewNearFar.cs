@@ -5,6 +5,7 @@ namespace YusamCommon
 {
     public class YuCoFieldOfViewNearFar : YuCoBaseFieldOfView
     {
+        [SerializeField] private bool initOnAwake = true;
         [SerializeField] private float viewRadiusNear = 7.5f;
         [SerializeField] private Material materialNear;
         
@@ -34,9 +35,12 @@ namespace YusamCommon
                 transform, 
                 materialNear,
                 out _meshFilterNear);
-            
-            YuCoMeshHelper.InitMesh(_meshFilterNear, viewRadiusFar, viewAngle,false, meshPrecision);
-            YuCoMeshHelper.InitMesh(MeshFilterFar, viewRadiusFar, viewAngle,true, meshPrecision);
+
+            if (initOnAwake)
+            {
+                YuCoMeshHelper.InitMesh(_meshFilterNear, viewRadiusFar, viewAngle, false, meshPrecision);
+                YuCoMeshHelper.InitMesh(MeshFilterFar, viewRadiusFar, viewAngle, true, meshPrecision);
+            }
         }
 
         private void Start()

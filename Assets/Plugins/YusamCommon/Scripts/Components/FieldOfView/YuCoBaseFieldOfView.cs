@@ -7,18 +7,18 @@ namespace YusamCommon
 {
     public abstract class YuCoBaseFieldOfView : YuCoMonoBehaviour
     {
-        [SerializeField] protected int findTargetBufferSize = 16;
-        [SerializeField] protected YuCoCountDown findTargetCountDown = new(0.2f);
-        [SerializeField] protected bool isGizmosEnabled;
+        public int findTargetBufferSize = 16;
+        public YuCoCountDown findTargetCountDown = new(0.2f);
+        public bool isGizmosEnabled;
         
-        [SerializeField] protected LayerMask targetMask = default;
-        [SerializeField] protected LayerMask obstacleMask = default;
+        public LayerMask targetMask = default;
+        public LayerMask obstacleMask = default;
         
-        [SerializeField] [Range(0, 360)] protected float viewAngle = 90f;
-        [SerializeField] protected float viewRadiusFar = 15f;
+        [Range(0, 360)] public float viewAngle = 90f;
+        public float viewRadiusFar = 15f;
         
-        [SerializeField] protected Material materialFar;
-        [SerializeField] protected float meshPrecision = 60f;
+        public Material materialFar;
+        public float meshPrecision = 60f;
         
         protected GameObject ObjectMeshRenderFar;
         protected MeshFilter MeshFilterFar;

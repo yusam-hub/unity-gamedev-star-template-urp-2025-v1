@@ -3,7 +3,8 @@
 namespace YusamCommon
 {
 	public class YuCoFieldOfView : YuCoBaseFieldOfView
-	{
+    {
+        [SerializeField] private bool initOnAwake = true;
         public void SetMaterialFar(Material value)
         {
             materialFar = value;
@@ -22,7 +23,10 @@ namespace YusamCommon
                 materialFar,
                 out MeshFilterFar);
            
-            YuCoMeshHelper.InitMesh(MeshFilterFar, viewRadiusFar, viewAngle,false, meshPrecision);
+            if (initOnAwake)
+            {
+                YuCoMeshHelper.InitMesh(MeshFilterFar, viewRadiusFar, viewAngle, false, meshPrecision);
+            }
         }
 
         private void Start()
