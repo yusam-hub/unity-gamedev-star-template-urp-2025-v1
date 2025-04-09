@@ -58,6 +58,7 @@ namespace Tools.UnityEditor
             }
             
             var worldGo = new GameObject("[ World ]");
+            worldGo.AddComponent<YuCoWorld>();
 
             CreateGroundPlane(worldGo.transform);
             CreateCube(worldGo.transform, new Vector3(-3, 0.5f, 0));

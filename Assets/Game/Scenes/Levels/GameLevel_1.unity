@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc31a5f380fd924ea0727acba9b6afe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebugging: 0
   rotateSpeed: 500
   moveSpeed: 8
   upButton: 119
@@ -473,6 +474,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1227259841}
+  - component: {fileID: 1227259842}
   m_Layer: 0
   m_Name: '[ World ]'
   m_TagString: Untagged
@@ -497,6 +499,25 @@ Transform:
   - {fileID: 2094755734}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1227259842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227259840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f25ae454b364f5daa8e3adb70686e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDebugging: 0
+  onAwakeOnce:
+    m_PersistentCalls:
+      m_Calls: []
+  onStartOnce:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1393118351
 GameObject:
   m_ObjectHideFlags: 0

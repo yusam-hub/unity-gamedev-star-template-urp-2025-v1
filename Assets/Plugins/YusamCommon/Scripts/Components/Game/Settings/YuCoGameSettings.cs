@@ -6,12 +6,19 @@ namespace YusamCommon
     [DefaultExecutionOrder(-10000)]
     public partial class YuCoGameSettings : YuCoSingletonDontDestroyOnLoad<YuCoGameSettings>
     {
+        [Space]
+        
         [SerializeField] 
         private YuCoBaseDataStorage dataStorage;
-
+        
+        [Space]
+        
         [SerializeField] 
+        [YuCoInlineScriptableObject]
         public YuCoGameSettingsBlackboardBaseSo blackboardBaseSo;
 
+        [Space]
+        
         [SerializeField] 
         private UnityEvent onLoadedBlackboard;
         
@@ -46,81 +53,4 @@ namespace YusamCommon
             return blackboardBaseSo;
         }
     }
-    
-#if UNITY_EDITOR    
-    [UnityEditor.CustomEditor(typeof(YuCoGameSettings))]
-    public class YuCoGameSettingsEditor : UnityEditor.Editor
-    {
-        private UnityEditor.SerializedObject serializedObjDefault;
-        private UnityEditor.SerializedObject serializedDataObject;
-        private bool showFields = false;
-        
-        private void OnEnable()
-        {
-            serializedObjDefault = new UnityEditor.SerializedObject(target);
-        }
-
-        private void DrawDefault()
-        {
-            serializedObjDefault.Update();
-
-            var property = serializedObjDefault.GetIterator();
-            var enterChildren = true;
-
-            while (property.NextVisible(enterChildren))
-            {
-              
-                if (property.name.Equals("m_Script"))
-                {
-                    
-                }
-                else
-                {
-                    UnityEditor.EditorGUILayout.PropertyField(property, true);
-                }
-
-                enterChildren = false;
-            }
-
-            serializedObjDefault.ApplyModifiedProperties();
-        }
-
-        private void DrawBlackboard()
-        {
-            var holder = (YuCoGameSettings) target;
-            
-            if (!holder.blackboardBaseSo)
-            {
-                return;
-            }
-
-            showFields = UnityEditor.EditorGUILayout.Foldout(showFields, "Blackboard So", true, UnityEditor.EditorStyles.foldoutHeader);
-            
-            if (showFields)
-            {
-                UnityEditor.EditorGUI.indentLevel++;
-    
-                serializedDataObject = new UnityEditor.SerializedObject(holder.blackboardBaseSo);
-                serializedDataObject.Update();
-                
-                UnityEditor.SerializedProperty property = serializedDataObject.GetIterator();
-                property.NextVisible(true);
-
-                UnityEditor.EditorGUILayout.Space();
-                while (property.NextVisible(false))
-                {
-                    UnityEditor.EditorGUILayout.PropertyField(property, true);
-                }
-
-                serializedDataObject.ApplyModifiedProperties();
-            }
-        }
-        
-        public override void OnInspectorGUI()
-        {
-            DrawDefault();
-            DrawBlackboard();
-        }
-    }
-#endif
 }

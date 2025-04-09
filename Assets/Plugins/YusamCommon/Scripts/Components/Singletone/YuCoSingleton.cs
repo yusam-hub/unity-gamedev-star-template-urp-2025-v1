@@ -37,6 +37,9 @@ namespace YusamCommon
         }
 
         private bool _startOnce;
+        
+        [Space]
+        
         [SerializeField] 
         private UnityEvent onAwakeOnce;
         [SerializeField] 
